@@ -1,5 +1,6 @@
 "use strict";
 const submitBtn = getId("submit-btn");
+const healthBtn = getId('healthy-btn')
 const idInput = getId("input-id");
 const nameInput = getId("input-name");
 const ageInput = getId("input-age");
@@ -11,16 +12,29 @@ const breedInput = getId("input-breed");
 const vaccinatedInput = getId("input-vaccinated");
 const dewormedInput = getId("input-dewormed");
 const sterilizedInput = getId("input-sterilized");
+const tableBodyEl = getId("tbody");
 
-const petArr  = [];
+const petArr = [];
+const listHealthPet = [];
+let isOpenHealthTable = false;
+healthBtn.addEventListener('click', () => {
+  isOpenHealthTable = !isOpenHealthTable;
+  if(isOpenHealthTable){
+    renderTableData(petArr.filter(pet => pet.vaccinated && pet.dewormed && pet.sterillized));
+  } else {
+    renderTableData(petArr);
+  }
+})
+
 submitBtn.addEventListener("click", () => {
   const pet = {
     id: idInput.value,
     name: nameInput.value,
-    age : ageInput.value,
+    age: parseInt(ageInput.value),
     type: typeInput.value,
-    weight: weightInput.value,
-    length: lengthInput.value,
+    weight: parseInt(weightInput.value),
+    length: parseInt(lengthInput.value),
+    breed: breedInput.value,
     color: colorInput.value,
     vaccinated: vaccinatedInput.checked,
     dewormed: dewormedInput.checked,
@@ -28,14 +42,103 @@ submitBtn.addEventListener("click", () => {
     date: new Date(),
   };
 
-  const validate = validateData(pet)
-  if (validate) {
-      petArr.push(data)
-    //   clearInput()
-    //   renderTableData(petArr)
+  if (validateData(pet)) {
+    petArr.push(pet);
+    renderTableData(petArr);
   }
 });
 
-function validateData(pet){
-    
+function renderTableData(arr) {
+  clearInput();
+  clearTable();
+  arr.forEach((pet) => {
+    renderLine(pet);
+  });
 }
+
+function renderLine(p) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+							<th scope="row">${p.id}</th>
+							<td>${p.name}</td>
+							<td>${p.age}</td>
+							<td>${p.type}</td>
+							<td>${p.weight} kg</td>
+							<td>${p.length} cm</td>
+							<td>${p.breed}</td>
+							<td>
+								<i class="bi bi-square-fill" style="color: ${p.color}"></i>
+							</td>
+							<td><i class="bi bi-${p.vaccinated ? "check" : "x"}-circle-fill"></i></td>
+							<td><i class="bi bi-${p.dewormed ? "check" : "x"}-circle-fill"></i></td>
+							<td><i class="bi bi-${p.sterillized ? "check" : "x"}-circle-fill"></i></td>
+							<td>?</td>
+							<td>${p.date.getDay()}/${p.date.getMonth()}/${p.date.getFullYear()}</td>
+							<td><button type="button" class="btn btn-danger" onClick="deletePet(${p.id})">Delete</button>
+							</td>
+  `;
+  tableBodyEl.appendChild(row);
+}
+
+function deletePet(id) {
+  if (!confirm("Are you sure?")) return;
+  petArr.forEach((pet) => {
+    if (pet.id == id) {
+      petArr.splice(pet, 1);
+    }
+  });
+  if(isOpenHealthTable){
+    renderTableData(petArr.filter(pet => pet.vaccinated && pet.dewormed && pet.sterillized));
+  } else {
+    renderTableData(petArr);
+  }
+}
+
+function validateData(p) {
+  let valid = true;
+  const setMessage = (mes) => {
+    alert(mes);
+    valid = false;
+  };
+  if (
+    p.id.trim() == "" ||
+    p.name.trim() == "" ||
+    isNaN(p.age) ||
+    isNaN(p.weight) ||
+    isNaN(p.length)
+  ) {
+    setMessage("Cannot be empty!");
+  } else {
+    petArr.forEach(pet => {
+      if(pet.id == p.id) setMessage("ID must be Unique!");
+    });
+    if (p.age <= 1 && 15 <= p.age) setMessage("Age must be between 1 and 15!");
+    else if (p.weight <= 1 && 15 <= p.weight)
+      setMessage("Weight must be between 1 and 15!");
+    else if (p.length <= 1 && 100 <= p.length)
+      setMessage("Length must be between 1 and 100!");
+    else if (p.type == "Select Type") setMessage("Please select Type!");
+    else if (p.breed == "Select Breed") setMessage("Please select Breed!");
+  }
+  return valid;
+}
+
+function clearInput() {
+  idInput.value = "";
+  nameInput.value = "";
+  ageInput.value = "";
+  weightInput.value = "";
+  lengthInput.value = "";
+  breedInput.value = "Select Breed";
+  typeInput.value = "Select Type";
+  colorInput.value = "#000000";
+  vaccinatedInput.checked = false;
+  dewormedInput.checked = false;
+  sterilizedInput.checked = false;
+}
+
+function clearTable(){
+  tableBodyEl.innerHTML = "";
+}
+
+
