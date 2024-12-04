@@ -88,4 +88,4 @@ if (!localStorage.getItem(KEY)) {
 if (localStorage.getItem(KEY)) {
   onLoad();
 }
-log(data);
+// log(data);
