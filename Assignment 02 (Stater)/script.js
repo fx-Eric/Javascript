@@ -52,14 +52,13 @@ function onClickCreatePet() {
     vaccinated: vaccinatedInput.checked,
     dewormed: dewormedInput.checked,
     sterillized: sterilizedInput.checked,
-    date: new Date(),
+    date: `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
   };
-
   if (validateData(pet)) {
-    pet.date = `${pet.date.getDay()}/${pet.date.getMonth()}/${pet.date.getFullYear()}`
     data.pets.push(pet);
     renderTableData(data.pets);
   }
+  onSave();
 }
 
 function onTypeChange() {
@@ -114,6 +113,7 @@ function deletePet(id) {
   if (!confirm("Are you sure?")) return;
   data.pets = data.pets.filter((p) => p.id != id);
   checkShowHealthPet();
+  onSave();
 }
 
 function validateData(p) {

@@ -1,4 +1,5 @@
 "use strict";
+const submitBtn = getId("submit-btn");
 const content = getId("container-form");
 const idInput = getId("input-id");
 const nameInput = getId("input-name");
@@ -13,6 +14,7 @@ const dewormedInput = getId("input-dewormed");
 const sterilizedInput = getId("input-sterilized");
 const tableBodyEl = getId("tbody");
 
+submitBtn.addEventListener("click", onSubmitBtn);
 renderTableData();
 
 function renderTableData() {
@@ -75,6 +77,66 @@ function showBreed(breed) {
   opt.innerHTML = breed;
   breedInput.appendChild(opt);
 }
+
+function onSubmitBtn() {
+  const pet = {
+    id: idInput.value,
+    name: nameInput.value,
+    age: parseInt(ageInput.value),
+    type: typeInput.value,
+    weight: parseInt(weightInput.value),
+    length: parseInt(lengthInput.value),
+    breed: breedInput.value,
+    color: colorInput.value,
+    vaccinated: vaccinatedInput.checked,
+    dewormed: dewormedInput.checked,
+    sterillized: sterilizedInput.checked,
+    date: `${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`
+  };
+
+  if(validateData(pet)){
+    replacePet(pet)
+    renderTableData();
+  }
+}
+
+function replacePet(newPet){
+  if(!confirm("Are you ok!")) return;
+  content.classList.add("hide");
+  data.pets.forEach((p, index) => {
+    if(newPet.id == p.id){
+      data.pets[index] = newPet;
+      onSave();
+    }
+  });
+}
+
+function validateData(p) {
+  let valid = true;
+  const setMessage = (mes) => {
+    alert(mes);
+    valid = false;
+  };
+  if (
+    p.name.trim() == "" ||
+    isNaN(p.age) ||
+    isNaN(p.weight) ||
+    isNaN(p.length)
+  ) {
+    setMessage("Cannot be empty!");
+  } else {
+    if (p.age <= 1 && 15 <= p.age) setMessage("Age must be between 1 and 15!");
+    else if (p.weight <= 1 && 15 <= p.weight)
+      setMessage("Weight must be between 1 and 15!");
+    else if (p.length <= 1 && 100 <= p.length)
+      setMessage("Length must be between 1 and 100!");
+    else if (p.type == "Select Type") setMessage("Please select Type!");
+    else if (p.breed == "Select Breed") setMessage("Please select Breed!");
+  }
+  return valid;
+}
+
+
 
 function clearTable() {
   tableBodyEl.innerHTML = "";
