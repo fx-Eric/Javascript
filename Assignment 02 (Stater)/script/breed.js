@@ -1,8 +1,8 @@
 "use strict";
-const submitBtn = getId("submit-btn");
-const breedInput = getId("input-breed");
-const typeInput = getId("input-type");
-const tableBodyEl = getId("tbody");
+const submitBtn = document.getElementById("submit-btn");
+const breedInput = document.getElementById("input-breed");
+const typeInput = document.getElementById("input-type");
+const tableBodyEl = document.getElementById("tbody");
 
 submitBtn.addEventListener("click", onClickSubmit);
 

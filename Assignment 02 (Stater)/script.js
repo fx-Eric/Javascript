@@ -1,18 +1,18 @@
 "use strict";
-const submitBtn = getId("submit-btn");
-const healthBtn = getId("healthy-btn");
-const idInput = getId("input-id");
-const nameInput = getId("input-name");
-const ageInput = getId("input-age");
-const typeInput = getId("input-type");
-const weightInput = getId("input-weight");
-const lengthInput = getId("input-length");
-const colorInput = getId("input-color-1");
-const breedInput = getId("input-breed");
-const vaccinatedInput = getId("input-vaccinated");
-const dewormedInput = getId("input-dewormed");
-const sterilizedInput = getId("input-sterilized");
-const tableBodyEl = getId("tbody");
+const submitBtn = document.getElementById("submit-btn");
+const healthBtn = document.getElementById("healthy-btn");
+const idInput = document.getElementById("input-id");
+const nameInput = document.getElementById("input-name");
+const ageInput = document.getElementById("input-age");
+const typeInput = document.getElementById("input-type");
+const weightInput = document.getElementById("input-weight");
+const lengthInput = document.getElementById("input-length");
+const colorInput = document.getElementById("input-color-1");
+const breedInput = document.getElementById("input-breed");
+const vaccinatedInput = document.getElementById("input-vaccinated");
+const dewormedInput = document.getElementById("input-dewormed");
+const sterilizedInput = document.getElementById("input-sterilized");
+const tableBodyEl = document.getElementById("tbody");
 
 healthBtn.addEventListener("click", onClickShowHealthPet);
 submitBtn.addEventListener("click", onClickCreatePet);
@@ -101,9 +101,7 @@ function renderLine(p) {
 	<td><i class="bi bi-${p.sterillized ? "check" : "x"}-circle-fill"></i></td>
 	<td>${p.date}</td>
 	<td>
-        <button type="button" class="btn btn-danger" onClick="deletePet(${
-          p.id
-        })">Delete</button>
+        <button type="button" class="btn btn-danger" onClick="deletePet('${p.id}')">Delete</button>
     </td>
   `;
   tableBodyEl.appendChild(row);
