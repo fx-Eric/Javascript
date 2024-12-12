@@ -19,17 +19,17 @@ function percentageOfWorld1(population){
     return population / worldPopulation * 100;
 }
 
-const percentVietNam = percentageOfWorld1(100); console.log(percentVietNam);
-const percentJapan = percentageOfWorld1(83); console.log(percentJapan);
-const percentAmerica = percentageOfWorld1(320); console.log(percentAmerica); 
+// const percentVietNam = percentageOfWorld1(100); console.log(percentVietNam);
+// const percentJapan = percentageOfWorld1(83); console.log(percentJapan);
+// const percentAmerica = percentageOfWorld1(320); console.log(percentAmerica); 
 
-const percentageOfWorld2 = function (){
+const percentageOfWorld2 = function (population){
     const worldPopulation = 7900;
     return population / worldPopulation * 100;
 }
-const percentVietNam = percentageOfWorld2(100); console.log(percentVietNam);
-const percentJapan = percentageOfWorld2(83); console.log(percentJapan);
-const percentAmerica = percentageOfWorld2(320); console.log(percentAmerica); 
+// const percentVietNam = percentageOfWorld2(100); console.log(percentVietNam);
+// const percentJapan = percentageOfWorld2(83); console.log(percentJapan);
+// const percentAmerica = percentageOfWorld2(320); console.log(percentAmerica); 
 
 // Lab 4.3. Hàm mũi tên (5 phút)
 // Thực hiện lại bài lab trước, nhưng lần này hãy tạo một hàm mũi tên là 'percentageOfWorld3'.

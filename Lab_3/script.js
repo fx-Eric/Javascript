@@ -2,11 +2,11 @@
 // 1. Dự đoán kết quả của 5 phép toán sau mà không cần thực thi:
 // 2. Thực hiện các phép toán để kiểm tra xem bạn đoán đúng không.
 
-'9' - '5' = 4;
-'19' - '13' + '17' = '617';
-'19' - '13' + 17 = 23;
-'123' < 57 = false;
-5 + 6 + '4' + 9 - 4 - 2 = 1143;
+// '9' - '5' = 4;
+// '19' - '13' + '17' = '617';
+// '19' - '13' + 17 = 23;
+// '123' < 57 = false;
+// 5 + 6 + '4' + 9 - 4 - 2 = 1143;
 
 // Lab 3.2. Toán tử bằng: == với === (40 phút)
 // Khai báo biến 'numNeighbours' dựa trên prompt input sau: prompt('How many neighbor countries does your country have?')

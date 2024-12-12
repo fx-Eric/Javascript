@@ -1,12 +1,12 @@
 // Lab 5.1. Giới thiệu về Object (5 phút)
 // 1. Tạo một object là 'myCountry' cho quốc gia bạn chọn, chứa các thuộc tính 'country', 'capital', 'language', 'population' and 'neighbours' (array như chúng ta đã thực hành trong bài trước).
-const myCountry = {
-    country : "Vietnam",
-    capital : "Hanoi",
-    language : "Vietnamese",
-    population : 100,
-    neighbours : ["lao", "china", "cam"],
-}
+// const myCountry = {
+//     country : "Vietnam",
+//     capital : "Hanoi",
+//     language : "Vietnamese",
+//     population : 100,
+//     neighbours : ["lao", "china", "cam"],
+// }
 
 // Lab 5.2. Dấu chấm với dấu ngoặc (10 phút)
 // Sử dụng object từ bài tập trước, in string sau ra console: 'Finland has 6 million finnish-speaking people, 3 neighbouring countries and a capital called Helsinki.'
@@ -45,7 +45,7 @@ myCountry.describe();
 
 // Lab 5.4. Vòng lặp For (5 phút)
 // Ở đất nước bạn có các cuộc bầu cử. Ở một thị trấn nhỏ, chỉ có 50 cử tri. Sử dụng vòng lặp for để mô phỏng 50 cử tri này, bằng cách in string sau ra console (cho các số từ 1 đến 50): 'Voter number 1 is currently voting'.
-for (let index = 0; index < array.length; index++) {
+for (let index = 0; index < 50; index++) {
     console.log(`Voter number ${index} is currently voting`);
 }
 
@@ -70,7 +70,7 @@ console.log(percentages2);
 const listOfNeighbours = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
 for (let i = 0; i < listOfNeighbours.length; i++) {
     for (let j = 0; j < listOfNeighbours[i].length; j++) {
-        if(i > 1=){
+        if(i > 1){
             console.log(listOfNeighbours[i][j]);
         }
     }
