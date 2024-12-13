@@ -23,7 +23,12 @@ function importFile(){
     const file = fileInput.files[0];
     const reader = new FileReader();
     reader.addEventListener("load", () => {
-        formatData(JSON.parse(reader.result));
+        const newData = JSON.parse(reader.result);
+        if(data.pets && data.breeds){
+           data = newData; 
+        } else {
+            formatData(newData);
+        }
         onSave();
         alert("import success!")
     })
