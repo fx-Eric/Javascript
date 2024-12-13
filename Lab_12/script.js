@@ -55,8 +55,8 @@ function calcAverageHumanAge(age) {
 }
 
 // Dữ liệu kiểm tra
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])); 
-console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])); 
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
 
 
@@ -64,17 +64,15 @@ console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 // 1. Nhiệm vụ của bạn
 // Viết lại hàm 'calcAverageHumanAge' từ Lab 12.2, nhưng lần này là hàm mũi tên và sử dụng chaining!
 
-const calcAverageHumanAge = age => age <= 2 ? 2 * age : 16 + age * 4;
-
 const calcAverageHumanAge = age =>
   age
-    .map(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4)) 
-    .filter(humanAge => humanAge >= 18) 
-    .reduce((acc, age) => acc + age, 0) / age.filter(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4)).filter(humanAge => humanAge >= 18).length;
+    .map(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4))
+    .filter(humanAge => humanAge >= 18)
+    .reduce((acc, age) => acc + age, 0) / age.map(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4)).filter(humanAge => humanAge >= 18).length;
 
 // Dữ liệu kiểm tra
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])); 
-console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])); 
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
 // 2. Dữ liệu kiểm tra
 // Dữ liệu 1: [5, 2, 4, 1, 15, 8, 3]
